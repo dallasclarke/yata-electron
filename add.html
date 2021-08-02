@@ -15,11 +15,15 @@
       <button type="submit">Add</button>
     </form>
     <script>
-        document.querySelector('form').addEventListener("submit", (event) => {
-            event.preventDefault();
+      const electron = require("electron");
+      const { ipcRenderer } = electron;
 
-            debugger;
-        })
+      document.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const { value } = document.querySelector("input");
+        ipcRenderer.send("todo:add", value);
+      });
     </script>
   </body>
 </html>
